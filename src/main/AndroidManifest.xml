@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.duoku.urbanchaos.mi" android:versionName="1.0.10" android:versionCode="48" android:installLocation="preferExternal">
+  <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="22" />
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+  <uses-permission android:name="android.permission.CALL_PHONE" />
+  <uses-permission android:name="android.permission.SEND_SMS" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.READ_LOGS" />
+  <!-- 玉米广告可选权限 -->
+  <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+  <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+  <!-- 和传媒、广点通、叶子传媒必须权限 -->
+  <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.GET_TASKS" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="android.permission.BATTERY_STATS" />
+  <uses-permission android:name="android.permission.BLUETOOTH" />
+  <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />
+  <!-- 叶子传媒 -->
+  <uses-permission android:name="android.permission.READ_SETTINGS" />
+  <!-- To auto-complete the email text field in the login form with the user's emails -->
+  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+  <uses-permission android:name="android.permission.READ_PROFILE" />
+  <uses-permission android:name="android.permission.READ_CONTACTS" />
+  <uses-permission android:name="android.permission.READ_CALL_LOG" />
+  <application android:allowBackup="true" android:icon="@drawable/app_icon" android:label="@string/app_name" android:theme="@android:style/Theme.Holo.Light.DarkActionBar" android:name="com.duoku.urbanchaos.duokuad.UCApp" android:isGame="true">
+    <activity android:name="com.duoku.urbanchaos.duokuad.SplashActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:configChanges="keyboardHidden|orientation|screenSize" android:label="@string/app_name" android:screenOrientation="landscape">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+        <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <activity android:name="com.duoku.urbanchaos.duokuad.MainActivity" android:label="@string/app_name" android:screenOrientation="sensorLandscape" android:launchMode="singleTask" android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection">
+      <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+      <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+    </activity>
+    <!-- 广告SDK ========== 声明开始 -->
+    <!-- 以下内容 请直接复制到 项目中，并修改相关包名 两处 修改①  修改② -->
+    <!-- 广告SDK ========== 声明开始 -->
+    <activity android:name="com.duoku.alone.ssp.activtiy.PlayActivity" android:configChanges="keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+    <service android:name="com.duoku.alone.ssp.DuokuAdService" android:exported="false" />
+    <!-- 修改① ↓↓↓ 需修改android:authorities="本应用包名packagename+.ReportDataContentProvider"↓↓↓ -->
+    <provider android:name="com.duoku.code.analytics.store.ReportDataContentProvider" android:authorities="com.duoku.urbanchaos.mi.ReportDataContentProvider" android:enabled="true" android:exported="false" />
+    <!-- 玉米组件声明开始 -->
+    <receiver android:name="com.yumi.android.sdk.ads.self.module.receiver.ADReceiver">
+      <intent-filter>
+        <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.PACKAGE_ADDED" />
+        <data android:scheme="package" />
+      </intent-filter>
+    </receiver>
+    <service android:name="com.yumi.android.sdk.ads.service.YumiAdsEventService" />
+    <activity android:name="com.yumi.android.sdk.ads.self.activity.YumiFullScreenActivity" android:configChanges="keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+    <!-- Debugging Activity -->
+    <activity android:name="com.yumi.android.sdk.ads.mediation.activity.MediationTestActivity" />
+    <!-- 玉米组件声明结束 -->
+    <!-- UniplaySDK嵌入代码开始 -->
+    <activity android:name="com.uniplay.adsdk.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+    <activity android:name="com.uniplay.adsdk.InterstitialAdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent" />
+    <receiver android:name="com.uniplay.adsdk.PackageReceiver">
+      <intent-filter android:priority="2147483647">
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+        <action android:name="android.intent.action.USER_PRESENT" />
+      </intent-filter>
+      <intent-filter android:priority="2147483647">
+        <action android:name="android.intent.action.PACKAGE_ADDED" />
+        <data android:scheme="package" />
+      </intent-filter>
+    </receiver>
+    <service android:name="com.uniplay.adsdk.DownloadService" />
+    <!-- UniplaySDK嵌入代码结束 -->
+    <!-- 和传媒 开始 ↓↓↓ -->
+    <!-- 和传媒开屏页 需配置 screenOrientation ：：landscape / portrait -->
+    <activity android:name="com.tencent.analytics.sdk.SplashActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:screenOrientation="landscape" />
+    <activity android:name="com.tencent.analytics.api.sky.ActivityApiC" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity android:name="com.tencent.analytics.api.sky.ActivityApiF" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity android:name="com.tencent.analytics.api.sky.ActivityApiW" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity android:name="com.tencent.analytics.api.sky.ActivityStyleA" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity android:name="com.tencent.analytics.api.sky.ActivityStyleB" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity android:name="com.tencent.analytics.api.sky.ActivityStyleC" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity android:name="com.tencent.analytics.api.sky.ActivityStyleD" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <service android:name="com.tencent.analytics.sdk.Adx" android:priority="2147483647">
+    </service>
+    <service android:name="com.tencent.analytics.sdk.Adm" android:priority="2147483647">
+    </service>
+    <!--com.aa.cc.ff.MagicService 包名不变化-->
+    <service android:name="com.aa.cc.ff.MagicService" android:exported="false">
+    </service>
+    <!--com.aa.cc.ff.MagicActivity 包名不变化-->
+    <activity android:name="com.aa.cc.ff.MagicActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
+    </activity>
+    <activity android:name="com.sky.SkyAppActivity" android:configChanges="keyboard|keyboardHidden|orientation" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <!-- 和传媒 结束 ↑↑↑ -->
+    <!-- 蓝莓互娱(视频)开始↓↓↓↓ -->
+    <activity android:name="com.lm.activity.InterstitialVideoProxyActivity" android:launchMode="singleTask" android:theme="@android:style/Theme.Translucent">
+    </activity>
+    <activity android:name="com.lm.activity.StimulateVideoProxyActivity" android:launchMode="singleTask">
+    </activity>
+    <activity android:name="com.lm.activity.DialogProxyActivity" android:launchMode="singleTask" android:theme="@android:style/Theme.Dialog">
+    </activity>
+    <provider android:name="com.lm.listener.FileProvider" android:authorities="com.duoku.urbanchaos.mi.fileprovider" android:grantUriPermissions="true" android:exported="false">
+    </provider>
+    <service android:name="com.lm.service.LogicService" android:enabled="true" android:exported="true">
+      <intent-filter>
+        <action android:name="com.adroid.SERVICE" />
+      </intent-filter>
+    </service>
+    <!-- 蓝莓互娱(视频)结束↑↑↑↑ -->
+    <!-- 广点通开始↓↓↓↓ -->
+    <meta-data android:name="com.tencent.rdm.uuid" android:value="bd10a2bb-4a29-4b31-8d4c-d9abc842608b" />
+    <service android:name="com.qq.e.comm.DownloadService" android:exported="false" />
+    <!-- 请开发者注意字母的大小写，ADActivity，而不是AdActivity -->
+    <activity android:name="com.qq.e.ads.ADActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+    <!-- 广点通结束↑↑↑↑ -->
+    <!-- 叶子传媒开始↓↓↓↓ -->
+    <activity android:name="com.afk.client.ads.AdActivity" android:configChanges="keyboardHidden|orientation|screenSize" android:screenOrientation="sensor" android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+    <activity android:name="com.afk.permission.RequestPermissionActivity" android:configChanges="keyboardHidden|orientation|screenSize" android:screenOrientation="sensor" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+    <!-- 叶子传媒结束↑↑↑↑ -->
+    <!-- 沙盒环境....DUOKU_AD_APPKEY：填写appKey信息9996043-->
+    <!-- DUOKU_AD_PRODUCT_KEY：填写 productKey信息  -->
+    <!--DUOKU_AD_VERSION：填写sdk 版本-->
+    <meta-data android:name="DUOKU_AD_APPKEY" android:value="11679944" />
+    <meta-data android:name="DUOKU_AD_PRODUCT_KEY" android:value="jlxH2Bk0BgZ4iIVdwaZ3qWOG" />
+    <meta-data android:name="DUOKU_AD_VERSION" android:value="3.1.5" />
+  </application>
+  <uses-feature android:glEsVersion="0x00020000" />
+  <uses-feature android:name="android.hardware.vulkan" android:required="false" />
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
+  <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="false" />
+</manifest>
